@@ -1,0 +1,30 @@
+# Copyright (C) 2020 Casper Meijn <casper@meijn.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+image: jojomi/hugo
+variables:
+  HUGO_DESTINATION: "public"
+
+reuse:
+  image: fsfe/reuse:latest
+  stage: test
+  script:
+    - reuse lint
+
+test:
+  stage: test
+  script:  
+  - hugo
+  except:
+  - master
+
+pages:
+  stage: deploy
+  script:
+  - hugo
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
