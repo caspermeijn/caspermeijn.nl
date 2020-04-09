@@ -5,6 +5,7 @@
 image: jojomi/hugo
 variables:
   HUGO_DESTINATION: "public"
+  GIT_SUBMODULE_STRATEGY: recursive
 
 reuse:
   image: fsfe/reuse:latest
