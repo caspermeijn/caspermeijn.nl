@@ -8,12 +8,13 @@ title: "PineTime Mynewt"
 date: 2020-04-04T20:14:15+02:00
 categories:
 - PineTime
+- mynewt
 ---
 
 So I recently bought a [PineTime dev kit](https://store.pine64.org/?product=pinetime-dev-kit).
 It is a development kit for a smartwatch. It is complete, but not fully assembled. The back is
 loose, so that you can program your own software. Pine64 is a hardware company, which expects
-the community to write open-source software for it. 
+the community to write open-source software for it.
 
 mynewt
 ------
@@ -35,13 +36,12 @@ Tutorial
 --------
 
 I am very pleased with the [documentation of mynewt](https://mynewt.apache.org/latest/). I was
-able to start making software in no time. So I contributed a tutorial of my own. Currently the 
-merge request has not yet been merged, but you can view it in on [Github](https://github.com/apache/mynewt-documentation/blob/5642718c5af9ae09eab47feb6eb3688040c70ffa/docs/tutorials/blinky/pinetime.rst).
+able to start making software in no time. So I contributed a tutorial of my own.
 
 The turorial will guide you to a blinking backlight on the device. First you need to do need to setup the mynewt
 toolchain using [this page](https://mynewt.apache.org/latest/get_started/index.html). The you need to
 read up on [project blinky here](https://mynewt.apache.org/latest/tutorials/blinky/blinky.html). Then you can
-start the [tutorial here](https://github.com/apache/mynewt-documentation/blob/5642718c5af9ae09eab47feb6eb3688040c70ffa/docs/tutorials/blinky/pinetime.rst).
+start the [tutorial here](https://mynewt.apache.org/latest/tutorials/blinky/pinetime.html).
 
 I have two additional note:
 
