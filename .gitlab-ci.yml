@@ -8,8 +8,10 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 reuse:
-  image: fsfe/reuse:latest
-  image:entrypoint: /bin/sh
+  image: 
+    name: fsfe/reuse:latest
+    entrypoint: 
+      - /bin/sh
   stage: test
   script:
     - reuse lint
