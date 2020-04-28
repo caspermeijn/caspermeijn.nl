@@ -10,8 +10,7 @@ variables:
 reuse:
   image: 
     name: fsfe/reuse:latest
-    entrypoint: 
-      - /bin/sh
+    entrypoint: [""]
   stage: test
   script:
     - reuse lint
