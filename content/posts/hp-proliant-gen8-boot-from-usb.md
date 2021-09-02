@@ -6,7 +6,6 @@
 #  send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 title: "HP Proliant Gen8: Boot from USB disk"
 date: 2021-09-02T14:38:06+02:00
-draft: true
 categories:
 - HP Proliant Gen8
 - Fedora

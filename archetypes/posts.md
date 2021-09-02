@@ -6,7 +6,6 @@
 #  send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-draft: true
 categories:
 - FromTemplate
 ---
