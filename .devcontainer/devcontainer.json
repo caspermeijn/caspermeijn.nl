@@ -1,0 +1,16 @@
+// Copyright (C) 2023 Casper Meijn <casper@meijn.net>
+//
+// SPDX-License-Identifier: CC0-1.0
+{
+	"name": "Ubuntu",
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"extended": true
+		}
+	},
+	"containerEnv": {
+		"HOME": ""
+	},
+	"runArgs": ["--userns=keep-id"],
+}
