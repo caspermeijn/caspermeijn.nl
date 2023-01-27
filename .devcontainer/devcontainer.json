@@ -12,5 +12,5 @@
 	"containerEnv": {
 		"HOME": ""
 	},
-	"runArgs": ["--userns=keep-id"],
+	"runArgs": ["--userns=keep-id"]
 }
