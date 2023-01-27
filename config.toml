@@ -22,7 +22,6 @@
 ##########################################
 # Site Settings
 
-baseURL = "https://caspermeijn.nl/"
 title = "Casper Meijn"
 languageCode = "en"
 hasCJKLanguage = false
