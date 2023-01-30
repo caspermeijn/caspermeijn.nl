@@ -57,7 +57,7 @@ enableGitInfo = false
 # Enable generation of `robots.txt` file?
 enableRobotsTXT = true
 
-# Number of items per page in paginated 
+# Number of items per page in paginated
 # lists (valid for the `posts` homepage
 # layout in MemE)
 paginate = 5
@@ -70,12 +70,12 @@ uglyURLs = false
 # URL structure
 [permalinks]
     categories = "/categories/:slug/"
-#    tags = "/tags/:slug/"
+    tags = "/tags/:slug/"
 
 # Taxonomies
 [taxonomies]
     category = "categories"
-#    tag = "tags"
+    tag = "tags"
 
 # Modified date
 [frontmatter]
@@ -112,6 +112,10 @@ uglyURLs = false
         endLevel = 6
         ordered = true
 
+# HTML minify
+[minify.tdewolff.html]
+    keepWhitespace = false
+
 # Author’s information
 [author]
     # Name
@@ -123,7 +127,7 @@ uglyURLs = false
     # Avatar
     avatar = "/icons/apple-touch-icon.png"
     # Personal website, default: baseURL
-    #website = "https://caspermeijn.nl/"
+    website = "https://caspermeijn.nl/"
     # Twitter
     #twitter = "reuixiy"
 
@@ -135,9 +139,9 @@ uglyURLs = false
     [[related.indices]]
         name = "categories"
         weight = 100
-#    [[related.indices]]
-#        name = "tags"
-#        weight = 95
+    [[related.indices]]
+        name = "tags"
+        weight = 95
     [[related.indices]]
         name = "date"
         weight = 10
@@ -157,16 +161,26 @@ uglyURLs = false
     mediaType = "application/rss+xml"
     baseName = "rss"
 
+# Search index for lunr.js
+[outputFormats.SearchIndex]
+    mediaType = "application/json"
+    baseName = "search"
+
+# Search index for Algolia
+[outputFormats.Algolia]
+    mediaType = "application/json"
+    baseName = "algolia"
+    isPlainText = true
+    notAlternative = true
+
 # Hugo’s output control
 [outputs]
     page = ["HTML"]
-    home = ["HTML", "SectionsAtom", "SectionsRSS"]
+    # home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex", "Algolia"]
+    home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
     section = ["HTML"]
-    # Taxonomy
-    taxonomyTerm = ["HTML"]
-    # Taxonomy term
     taxonomy = ["HTML"]
-    # Note: https://github.com/gohugoio/hugo/issues/4528#issuecomment-508488859
+    term = ["HTML"]
 
 # Maximum number of items in the Atom & RSS feed
 [services.rss]
@@ -192,7 +206,7 @@ uglyURLs = false
 
 # The configuration instructions in the
 # menu are as follows:
-# url           URL
+# pageref/url   internal/external URL
 # name          Text (won’t display if it
 #               is left empty("") or does
 #               not exist)
@@ -203,39 +217,39 @@ uglyURLs = false
 #               is left empty("") or does
 #               not exist)
 # identifier    Icon’s class name
-#               (there are two speacial
+#               (there are three special
 #               values for header layout
 #               flex: `theme-switcher`,
-#               `lang-switcher`)
+#               `lang-switcher`, `search`)
 
 [menu]
     ## Menu bar
     # [[menu.main]]
-    #     url = "/"
+    #     pageref = "/"
     #     name = "Home"
     #     weight = 1
     #     pre = "internal"
     #     post = "home"
     [[menu.main]]
-        url = "/posts/"
+        pageref = "/posts/"
         name = "Posts"
         weight = 2
         pre = "internal"
         post = "archive"
     [[menu.main]]
-        url = "/categories/"
+        pageref = "/categories/"
         name = "Categories"
         weight = 3
         pre = "internal"
         post = "th"
 #    [[menu.main]]
-#        url = "/tags/"
+#         pageref = "/tags/"
 #        name = "Tags"
 #        weight = 4
 #        pre = "internal"
 #        post = "tags"
     [[menu.main]]
-        url = "/about/"
+        pageref = "/about/"
         name = "About"
         weight = 5
         pre = "internal"
@@ -258,6 +272,9 @@ uglyURLs = false
 
     enableHeader = true
 
+    enableHeaderAutoHide = false
+    # Note: works for header layout flex only
+
     displayHeaderInHome = true
     # Note: invalid for header layout flex
 
@@ -266,15 +283,6 @@ uglyURLs = false
 
     headerLayout = "flex"
     # Note: center or flex
-
-    headerFallbackWidth = "32em"
-    # Note: by default, MemE uses main-inner’s
-    #       width for `headerWidth`, but in
-    #       some pages (e.g. homepage layout
-    #       poetry, footage), there is no
-    #       main-inner, so you need to give
-    #       a fallback value for this
-    #       situation.
 
     # Hide menu bar and display a toggle
     # on narrow screen?
@@ -355,6 +363,12 @@ uglyURLs = false
     homeKeywords = ""
     homeLinksDelimiter = ""
 
+    ## Posts
+    enableHideInHomepage = false
+    # Note: enable `hideInHomepage` front
+    #       matter support (disabled by
+    #       default for performance concern)
+
 
     ######################################
     # Site Info
@@ -428,6 +442,11 @@ uglyURLs = false
     # category?
     displayPostsCount = true
 
+    # Set to a non-negative number to limit
+    # the number of posts displayed per
+    # category/section.
+    limitPostsLimit = -1
+
 
     ######################################
     # Tags Page
@@ -442,7 +461,7 @@ uglyURLs = false
     ######################################
     # List Page
 
-    listWidth = 30
+    listWidth = 36
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -483,6 +502,11 @@ uglyURLs = false
     # Display count of posts in each
     # taxonomy term?
     displayTaxonomyTermCount = true
+
+    # Set to a non-negative number to limit
+    # the number of posts displayed per
+    # taxonomy term.
+    limitEntriesLimit = -1
 
 
     ######################################
@@ -544,6 +568,10 @@ uglyURLs = false
     #       may still read your blog in
     #       light mode, even if you have
     #       hidden the theme toggle.
+    #       Unless you enable the following
+    #       option.
+
+    overrideSystemPreferences = false
 
 
     ######################################
@@ -602,8 +630,6 @@ uglyURLs = false
     #       environment
 
     enableServiceWorker = false
-    # Note: need third-party support, see
-    #       https://io-oi.me/tech/pwa-via-workbox/
 
 
     ######################################
@@ -634,6 +660,9 @@ uglyURLs = false
     #       `mermaid` in post’s Front Matter
     #       has a higher priority than here
 
+    mermaidTheme = 'default'
+    mermaidThemeDark = 'dark'
+
 
     ######################################
     # Comments
@@ -646,6 +675,9 @@ uglyURLs = false
     #       `comments` in post’s Front Matter
     #       has a higher priority than here
 
+    # directly load the comments after pages loaded
+    autoLoadComments = false
+
     ## Disqus
     enableDisqus = false
     disqusShortname = ""
@@ -655,8 +687,6 @@ uglyURLs = false
     valineAppId = ""
     valineAppKey = ""
     valinePlaceholder = "Just go go"
-    valineNotify = false
-    valineVerify = false
     valinePath = ""
     valineAvatar = "mm"
     valineMeta = ["nick", "mail", "link"]
@@ -664,9 +694,13 @@ uglyURLs = false
     valineLang = "en"
     valineVisitor = false
     valineHighlight = true
-    avatarForce = false
+    valineAvatarForce = false
     valineRecordIP = false
     valineServerURLs = ""
+    valineEmojiCDN = ""
+    valineEmojiMaps = {}
+    valineEnableQQ = false
+    valineRequiredFields = []
     # Note: https://valine.js.org/
 
     ## Utterances
@@ -677,6 +711,48 @@ uglyURLs = false
     utterancesThemeDark = "photon-dark"
     utterancesLabel = ""
     # Note: https://utteranc.es/
+
+    ## Gitalk
+    enableGitalk = false
+    gitalkClientID = "your_client_id"
+    gitalkClientSecret = "your_client_secret"
+    gitalkRepo = "your_repository"
+    gitalkOwner = "your_gitalk_owner"
+    gitalkAdmin = ["your_gitalk_admin"]
+
+    # 1. default (`location.href`)
+    # 2. pathname (`location.pathname`)
+    # 3. hash (hash_filepath)
+    # 4. custom:your_gitalk_id ("your_gitalk_id")
+    gitalkID = "pathname"
+
+    gitalkNumber = -1
+    gitalkLables = ["Gitalk"]
+
+    # 1. default (`document.title`)
+    # 2. custom:your_gitalk_title ("your_gitalk_title")
+    gitalkTitle = "default"
+
+    # 1. default (`location.href` + header.meta[description])
+    # 2. href (`location.href`)
+    # 3. custom:your_gitalk_body ("your_gitalk_body")
+    gitalkBody = "default"
+
+    # 1. default (`navigator.language || navigator.userLanguage`)
+    # 2. Support [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko, fa, ja]
+    gitalkLanguage = "en"
+
+    gitalkPerPage = 10
+    gitalkDistractionFreeMode = false
+    gitalkPagerDirection = "last"
+    gitalkCreateIssueManually = false
+    gitalkProxy = "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"
+    gitalkStaggerDelayBy = 150
+    gitalkAppearAnimation = "accordionVertical"
+    gitalkEnterAnimation = "accordionVertical"
+    gitalkLeaveAnimation = "accordionVertical"
+    gitalkEnableHotKey = true
+    # Note: https://github.com/gitalk/gitalk
 
 
     ######################################
@@ -716,6 +792,16 @@ uglyURLs = false
 
 
     ######################################
+    # Yandex.Metrika
+    # https://metrika.yandex.ru/
+
+    # Note: render only in production
+    #       environment
+
+    yandexMetrikaId = ""
+
+
+    ######################################
     # Post Settings
 
     # The color change duration of the
@@ -730,7 +816,7 @@ uglyURLs = false
     #            supported
 
     # The content width of the post
-    postWidth = 32
+    postWidth = 36
     # Note: you can leave it empty("") to
     #       fallback to the default value: 42
     #       Unit: em
@@ -771,10 +857,10 @@ uglyURLs = false
     displayPublishedDate = true
     publishedDateIcon = "calendar-alt"
 
-    displayModifiedDate = true
+    displayModifiedDate = false
     modifiedDateIcon = "calendar-check"
 
-    displayExpiredDate = true
+    displayExpiredDate = false
     expiredDateIcon = "calendar-times"
 
     displayCategory = true
@@ -824,6 +910,9 @@ uglyURLs = false
     # Headings Anchor
 
     enableHeadingsAnchor = true
+    # Note: *global settings*
+    #       `anchor` in post’s Front Matter
+    #       has a higher priority than here
 
     # Level range of headings
     headingsOpt = "1-6"
@@ -920,6 +1009,11 @@ uglyURLs = false
 
 
     ######################################
+    # Scrollbar
+    customizeScrollbar = true
+
+
+    ######################################
     # Typography
 
     ######################################
@@ -970,7 +1064,7 @@ uglyURLs = false
     ######################################
     ## Font Size (unit: px)
 
-    fontSize = 20
+    fontSize = 18
 
     ######################################
     ## Tab Size
@@ -1199,6 +1293,8 @@ uglyURLs = false
 
     displayBackToTopInHome = true
 
+    displayBackToTopOnMobile = false
+
     backToTopIcon = "arrow-up"
 
 
@@ -1207,11 +1303,14 @@ uglyURLs = false
 
     enableFooter = true
 
+    displayFooter = true
+
     displayFooterInHome = true
 
+    displayCopyleftSymbol = false
     displayCopyrightSymbol = true
 
-    displaySiteCreatedYear = false
+    displaySiteCreatedYear = true
 
     # Leave it empty("") if you don’t want
     # the icon
@@ -1269,9 +1368,21 @@ uglyURLs = false
     ######################################
     # Fingerprinting and SRI
 
-    enableFingerprint = true
     # Note: valid for CSS and JS generated
     #       by MemE only
+
+    enableFingerprint = true
+
+    enableSRI = false
+    # Note: subresource integrity will
+    #       block MemE CSS and JS on third
+    #       party websites like Google
+    #       Translate. To prevent this,
+    #       your server has to send the
+    #       following header for CSS and
+    #       JS requests:
+    #
+    #       Access-Control-Allow-Origin: *
 
 
     ######################################
@@ -1291,7 +1402,6 @@ uglyURLs = false
     # Smooth Scroll
 
     enableSmoothScroll = true
-    # Note: https://github.com/cferdinandi/smooth-scroll
 
 
     ######################################
@@ -1309,6 +1419,34 @@ uglyURLs = false
 
 
     ######################################
+    # Lunr search
+
+    # Note: This requires SearchIndex
+    #       output to be enabled.
+
+    enableLunrSearch = true
+    # Note: https://lunrjs.com/
+
+
+    ######################################
+    # Algolia search
+
+    # Note: This requires Algolia
+    #       output to be enabled.
+    #       And you need to upload the
+    #       generated algolia.json to
+    #       Algolia every time you rebuild
+    #       your site.
+
+    enableAlgoliaSearch = false
+
+    algoliaAppId = ""
+    algoliaApiKey = ""
+    algoliaIndexName = ""
+    # Note: https://www.algolia.com/
+
+
+    ######################################
     # 404 Page
 
     fofPoster = ""
@@ -1317,3 +1455,37 @@ uglyURLs = false
     fofVideoMp4 = ""
     # Note: you can leave these two
     #       options empty("")
+
+
+    ######################################
+    # Customize host for third-party libraries
+
+    [params.lib]
+        host = "https://cdn.jsdelivr.net"
+        # Note: set it to root("/") and set
+        #       the path below if you want to host
+        #       the lib directly from “local”.
+        #       I.e. set path to "js/lib.min.js",
+        #       and put this file to your
+        #       /static/js/lib.min.js
+    [params.lib.path]
+        clipboard = "/npm/clipboard-polyfill@2.8.6/dist/clipboard-polyfill.min.js"
+        instantsearch = "/npm/instantsearch.js@2/dist/instantsearch.min.js"
+        gitalk = "/npm/gitalk@1/dist/gitalk.min.js"
+        gitalk_css = "/npm/gitalk@1/dist/gitalk.css"
+        instantpage = "/npm/instant.page@5.1.0/instantpage.min.js"
+        katex = "/npm/katex@0.13.0/dist/katex.min.js"
+        katex_css = "/npm/katex@0.13.0/dist/katex.min.css"
+        katex_mhchem = "/npm/katex@0.13.0/dist/contrib/mhchem.min.js"
+        katex_auto_render = "/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+        lunr = "/npm/lunr@2.3.9/lunr.min.js"
+        lunr_tinyseg = "/npm/lunr-languages@1.4.0/tinyseg.js"
+        lunr_stemmer = "/npm/lunr-languages@1.4.0/min/lunr.stemmer.support.min.js"
+        lunr_lang = "/npm/lunr-languages@1.4.0/min/lunr.de.min.js"
+        mathjax = "/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"
+        medium_zoom = "/npm/medium-zoom@latest/dist/medium-zoom.min.js"
+        mermaid = "/npm/mermaid@8.8.3/dist/mermaid.min.js"
+        qrcode = "/npm/qrcode-generator@1.4.4/qrcode.min.js"
+        valine = "/npm/valine@1.4.14/dist/Valine.min.js"
+        busuanzi = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+        utterances = "https://utteranc.es/client.js"
