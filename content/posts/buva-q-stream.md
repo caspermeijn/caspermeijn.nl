@@ -6,6 +6,8 @@
 #  send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 title: "BUVA Q-Stream afzuiging via Home Assistant"
 date: 2022-01-03T12:30:00+01:00
+categories:
+- Home Assistant
 ---
 
 In mijn nieuwbouw woning zit een BUVA Q-Stream afzuiging. Deze wordt met een afstandsbediening kastje bediend. Het kastje hing in de woonkamer, wordt met 240 volt gevoed en stuurt draadloos het signaal naar de afzuiging. De afzuiging zelf bevind zich op zolder en zuigt in de keuken, badkamer en de zolder aan. 

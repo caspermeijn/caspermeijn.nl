@@ -6,6 +6,8 @@
 #  send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 title: "EdgeRouter SFP X"
 date: 2021-02-09T11:30:45+01:00
+categories:
+- Network
 ---
 
 These are some instructions to connect my Ubiquiti EdgeRouter SFP X to my internet provider XS4all.
