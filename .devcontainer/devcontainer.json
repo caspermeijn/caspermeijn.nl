@@ -9,8 +9,14 @@
 			"extended": true
 		}
 	},
-	"containerEnv": {
-		"HOME": ""
-	},
-	"runArgs": ["--userns=keep-id"]
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"streetsidesoftware.code-spell-checker",
+				"streetsidesoftware.code-spell-checker-dutch",
+				"akmittal.hugofy",
+				"DavidAnson.vscode-markdownlint"
+			]
+		}
+	}
 }
