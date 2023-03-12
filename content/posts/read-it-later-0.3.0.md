@@ -24,6 +24,6 @@ I followed the migration guides for [GTK 4](https://docs.gtk.org/gtk4/migrating-
 
 I really like the tech stack for this application. GTK and libadwaita provide great UI widgets. Rust provides high-quality libraries and a lot of compile-time checks. [gtk-rs](https://gtk-rs.org/) provides bindings from Rust to GTK. Flatpak provides a stable build and runtime environment. The [VSCode Flatpak plugin](https://marketplace.visualstudio.com/items?itemName=bilelmoussaoui.flatpak-vscode) provides the editor integration.
 
-Thanks to Bibal for mentoring me and thanks to the [translators](https://l10n.gnome.org/module/read-it-later/) for the constant stream of contributions.
+Thanks to Bilal for mentoring me and thanks to the [translators](https://l10n.gnome.org/module/read-it-later/) for the constant stream of contributions.
 
 <a href='https://flathub.org/apps/details/com.belmoussaoui.ReadItLater'><img width='240' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-en.png'/></a>
