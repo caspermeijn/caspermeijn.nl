@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 .config/
+.hugo_build.lock
 .idea/
 resources/_gen
 public/
