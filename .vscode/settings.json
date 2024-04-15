@@ -12,6 +12,18 @@
         "Librem",
         "Phosh",
         "Q-Stream",
+        "struct",
         "Wallabag"
+    ],
+    "languageToolLinter.languageTool.ignoredWordsInWorkspace": [
+        "floats",
+        "garbage",
+        "heap",
+        "lifetime",
+        "reference",
+        "references",
+        "struct",
+        "trait",
+        "unsafe"
     ]
 }
